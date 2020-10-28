@@ -38,9 +38,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app',
+    'corsheaders',
 ]
 
+# CORS_ORIGIN_ALLOW_ALL=True
+
+CORS_ORIGIN_WHITELIST = [
+    # 'http://google.com',
+    # 'http://hostname.example.com',
+    # 'http://localhost:8000',
+    # 'http://127.0.0.1:9000',
+    'http://localhost:3000',
+]
+
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
