@@ -33,8 +33,12 @@ def project_create(request):
     project_form = Project_Form(pull_var)
     if project_form.is_valid():
         new_project = project_form.save(commit=False)
-        # here is where would attach to other models and stuff
         new_project.save()
+        # here is where would attach to other models and stuff
+        cat1 = Category.objects.get(id=1)
+        cat1.projects.add(new_project.id)
+        cat1.save()
+        
         print(new_project.id)
         print(new_project)
         made_project = Project.objects.values().get(id=new_project.id)
