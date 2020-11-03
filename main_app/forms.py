@@ -6,7 +6,7 @@ from .models import Comment
 class Project_Form(ModelForm):
     class Meta:
         model = Project
-        fields = ['name', 'image', 'description']
+        fields = ['name', 'image', 'description', 'continent', 'goal']
 
 class Comment_Form(ModelForm):
     class Meta:

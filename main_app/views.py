@@ -31,6 +31,10 @@ def project_index(request):
     projects = list(Project.objects.values().all())
     return JsonResponse({'data': projects})
 
+def project_view(request, proj_id):
+    project = Project.objects.values().get(id=proj_id)
+    return JsonResponse({'data': project})
+
 @csrf_exempt
 def project_create(request):
     import json
@@ -71,6 +75,17 @@ def project_edit(request, proj_id):
         old_project = project_form.save(commit=False)
         old_project.save()
     return JsonResponse({"edited project": proj_id})
+
+
+
+
+
+
+
+
+
+
+
 
 # comments CRD
 
