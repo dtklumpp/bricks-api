@@ -52,3 +52,15 @@ def project_delete(request, proj_id):
     doomed_project = Project.objects.get(id=proj_id)
     doomed_project.delete()
     return JsonResponse({"deleted project": proj_id})
+
+@csrf_exempt
+def project_edit(request, proj_id):
+    project = Project.objects.get(id=proj_id)
+    import json
+    pull_var = json.loads(request.body)
+
+    project_form = Project_Form(pull_var, instance=project)
+    if project_form.is_valid():
+        old_project = project_form.save(commit=False)
+        old_project.save()
+    return JsonResponse({"edited project": proj_id})
