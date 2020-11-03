@@ -46,3 +46,9 @@ def project_create(request):
         return JsonResponse({"return:": made_project})
     else:
         return JsonResponse({"return:": "bad_input"})
+
+@csrf_exempt
+def project_delete(request, proj_id):
+    doomed_project = Project.objects.get(id=proj_id)
+    doomed_project.delete()
+    return JsonResponse({"deleted project": proj_id})
