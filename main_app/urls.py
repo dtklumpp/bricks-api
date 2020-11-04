@@ -9,8 +9,12 @@ urlpatterns = [
     path('projects/delete/<int:proj_id>', views.project_delete, name='project_delete'),
     path('projects/edit/<int:proj_id>', views.project_edit, name='project_edit'),
     path('projects/view/<int:proj_id>', views.project_view, name='project_view'),
+
+    # custom project methods
     path('projects/pledge/<int:proj_id>', views.project_pledge, name='project_pledge'),
     path('projects/filter/<int:cat_id>', views.project_filter, name='project_filter'),
+    path('projects/truncate/<int:cutoff>', views.project_truncate, name='project_truncate'),
+    path('projects/location/<str:country>', views.project_location, name='project_location'),
 
 
     # categories

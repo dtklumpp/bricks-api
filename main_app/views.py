@@ -108,6 +108,16 @@ def project_filter(request, cat_id):
     projects = list(category.projects.values())
     return JsonResponse({'data': projects})
 
+def project_truncate(request, cutoff):
+    projects = list(Project.objects.values().all())
+    projectsBrief = projects[:cutoff]
+    return JsonResponse({'data': projectsBrief})
+
+
+def project_location(request, country):
+    location = "North America"
+    projects = list(Project.objects.values().filter(continent=location))
+    return JsonResponse({'data': projects})
 
 
 
