@@ -6,6 +6,7 @@ from .models import Comment
 
 from .forms import Project_Form
 from .forms import Comment_Form
+from .forms import Pledge_Form
 
 
 from django.views.decorators.csrf import csrf_exempt
@@ -76,6 +77,25 @@ def project_edit(request, proj_id):
         old_project.save()
     return JsonResponse({"edited project": proj_id})
 
+
+@csrf_exempt
+def project_pledge(request, proj_id):
+    project = Project.objects.get(id=proj_id)
+    import json
+    pull_var = json.loads(request.body)
+    update = pull_var
+    print("pullvar:")
+    print(pull_var)
+    print("update:")
+    print(update)
+    update['funding'] = project.funding + int(pull_var['pledge'])
+    update['pledges'] = project.pledges + 1
+
+    pledge_form = Pledge_Form(update, instance=project)
+    if pledge_form.is_valid():
+        old_project = pledge_form.save(commit=False)
+        old_project.save()
+    return JsonResponse({"new amount": old_project.funding, "new pledges": old_project.pledges})
 
 
 

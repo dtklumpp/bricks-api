@@ -12,3 +12,8 @@ class Comment_Form(ModelForm):
     class Meta:
         model = Comment
         fields = ['name', 'description']
+
+class Pledge_Form(ModelForm):
+    class Meta:
+        model = Project
+        fields = ['funding', 'pledges']
