@@ -115,7 +115,29 @@ def project_truncate(request, cutoff):
 
 
 def project_location(request, country):
-    location = "North America"
+
+    nam_cont = ["USA", "MEX", "CAN", "CUB", "GTM", "HND", "NIC", "CRI", "PAN", "HTI", "DOM"]
+    sam_cont = ["BRA", "FRA", "SUR", "GUY", "VEN", "COL", "ECU", "PER", "BOL", "PRY", "ARG", "URY", "CHL"]
+    eur_cont = ["GRC", "ALB", "MKD", "BGR", "XKX", "MNE", "BIH", "SRB", "ROU", "HRV", "HUN", "SVN", "AUT", "CZE", "SVK", "UKR", "MDA", "TUR", "BLR", "POL", "EST", "LVA", "LTU", "CZE", "CHE", "ITA", "PRT", "ESP", "FRA", "BEL", "NLD", "LUX", "DEU", "DNK", "IRL", "GBR", "NOR", "SWE", "FIN"]
+    aus_cont = ["AUS"]
+    azn_cont = ["USA", "RUS", "CHN", "AUS", "NZL", "AUS", "PNG", "IDN", "IDN", "IDN", "IDN", "PHL", "MYS", "MYS", "JPN", "KOR", "PRK", "TWN", "CHN", "VNM", "KHM", "MYS", "THA", "THA", "LAO", "MMR", "IND", "CHN", "MNG", "RUS", "BTN", "BGD", "NPL", "IND", "IND", "PAK", "AFG", "TJK", "KGZ", "UZB", "TKM", "KAZ", "IRN", "AZE", "GEO", "ARM", "RUS", "SYR", "IRQ", "JOR", "SAU", "OMN", "YEM", "ARE", "ISR"]
+    afr_cont = ["COD", "GAB", "COG", "GNQ", "CMR", "CAF", "TCD", "NER", "NGA", "BEN", "BFA", "TGO", "GHA", "CIV", "LBR", "SLE", "GIN", "MLI", "GNB", "SEN", "SEN", "MRT", "ESH", "MAR", "ESH", "DZA", "TUN", "LBY", "EGY", "SDN", "SSD", "ETH", "ERI", "SOL", "SOM", "KEN", "UGA", "TZA", "BDI", "RWA", "MDG", "MOZ", "MWI", "MWI", "MWI", "ZMB", "MOZ", "ZWE", "ZAF", "SWZ", "LSO", "BWA", "NAM", "AGO", "AGO", "ZMB"]
+
+    if country in nam_cont:
+        location = "North America"
+    elif country in sam_cont:
+        location = "South America"
+    elif country in eur_cont:
+        location = "Europe"
+    elif country in aus_cont:
+        location = "Australia"
+    elif country in azn_cont:
+        location = "Asia"
+    elif country in afr_cont:
+        location = "Africa"
+    else:
+        location = "North America"
+
     projects = list(Project.objects.values().filter(continent=location))
     return JsonResponse({'data': projects})
 
