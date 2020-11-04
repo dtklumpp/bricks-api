@@ -9,7 +9,7 @@ class Project(models.Model):
 
     continent = models.CharField(max_length=50, default="North America")
     goal = models.IntegerField(default=100000)
-    
+
     funding = models.IntegerField(default=0)
     pledges = models.IntegerField(default=0)
 
@@ -19,7 +19,7 @@ class Project(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    image = models.CharField(max_length=250)
+    image = models.CharField(max_length=250, null=True, blank=True)
 
     projects = models.ManyToManyField(Project)
 

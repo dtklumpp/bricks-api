@@ -24,6 +24,12 @@ def homer(request):
     print("message: "+pull_var)
     return JsonResponse({"response": pull_var})
 
+# category index
+
+def category_index(request):
+    categories = list(Category.objects.values().all())
+    return JsonResponse({'data': categories})
+
 
 
 # projects CRUD
@@ -97,6 +103,10 @@ def project_pledge(request, proj_id):
         old_project.save()
     return JsonResponse({"new amount": old_project.funding, "new pledges": old_project.pledges})
 
+def project_filter(request, cat_id):
+    category = Category.objects.get(id=cat_id)
+    projects = list(category.projects.values())
+    return JsonResponse({'data': projects})
 
 
 

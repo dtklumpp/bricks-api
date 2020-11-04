@@ -10,6 +10,12 @@ urlpatterns = [
     path('projects/edit/<int:proj_id>', views.project_edit, name='project_edit'),
     path('projects/view/<int:proj_id>', views.project_view, name='project_view'),
     path('projects/pledge/<int:proj_id>', views.project_pledge, name='project_pledge'),
+    path('projects/filter/<int:cat_id>', views.project_filter, name='project_filter'),
+
+
+    # categories
+    path('categories/', views.category_index, name='category_index'),
+
 
 
     # comments time
