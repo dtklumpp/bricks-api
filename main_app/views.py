@@ -8,6 +8,7 @@ from .forms import Project_Form
 from .forms import Comment_Form
 from .forms import Pledge_Form
 
+import random
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -110,6 +111,7 @@ def project_filter(request, cat_id):
 
 def project_truncate(request, cutoff):
     projects = list(Project.objects.values().all())
+    random.shuffle(projects)
     projectsBrief = projects[:cutoff]
     return JsonResponse({'data': projectsBrief})
 
