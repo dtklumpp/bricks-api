@@ -1,5 +1,3 @@
-# bricks-api
-
 nothing to see here
 
-backend API for "spare change" project found [here](https://github.com/dtklumpp/bricks-client)
+this repo holds the backend API for "spare change" project found [here](https://github.com/dtklumpp/bricks-client)
